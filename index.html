@@ -1,20 +1,444 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
   </head>
   <body>
-    <a-scene physics>
-      <a-box position="-1 4 -4" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
-      <a-sphere position="-1 7.25 -5" radius="1.25" color="#EF2D5E" dynamic-body></a-sphere>
-      <a-sphere position="-1 11.25 -7" radius="1.25" color="#002D5E" dynamic-body></a-sphere>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" color="#7BC8A4" static-body></a-plane>
-      <a-sky color="#4CC3D9"></a-sky>
+    
+    <a-scene>
+      <a-assets>
+        <img id="futuristic" src="assets/FuturisticWall.jpg">
+        <img id="futuristic-normal" src="assets/FuturisticWall_normal.jpg">
+        <img id="woodpanel" src="assets/WoodPanel.png">
+        <img id="woodpanel-normal" src="assets/WoodPanel_normal.png">
+        <img id="bronzepatina" src="assets/BronzePatina.png">
+        <img id="bronzepatina-normal" src="assets/BronzePatina_normal.png">
+        <img id="marbleslab" src="assets/MarbleSlabWhite.png">
+        <img id="stars" src="assets/stars.jpg">
+        <img id="copper" src="assets/copper.png">
+        <img id="brass" src="assets/brass.png">
+        <img id="bronzecopper" src="assets/BronzeCopper.jpg">
+        <img id="stainlessSteel" src="assets/stainlessSteel.png">
+        <img id="stainlessSteel-normal" src="assets/stainlessSteel_normal.png">
+        <img id="twigsandbranches" src="assets/TwingsandBranches.png">
+        <img id="twigsandbranches-normal" src="assets/TwingsandBranches_normal.png">
+        <img id="leatherplain" src="assets/Leather_Plain.png">
+        <img id="leatherplain-normal" src="assets/Leather_Plain_normal.png">
+        <img id="leathertufted" src="assets/Leather_Tufted2.png">
+        <img id="leathertufted-normal" src="assets/Leather_Tufted2_normal.png">
+
+        
+        <a-asset-item id="chair-3" src="assets/armchair/scene.gltf"></a-asset-item>
+        <a-asset-item id="star" src="assets/star/scene.gltf"></a-asset-item>
+        <a-asset-item id="starcluster" src="assets/starcluster/scene.gltf"></a-asset-item>
+        
+        <a-asset-item id="pinetree" src="assets/pinetree/scene.gltf"></a-asset-item>
+        <a-asset-item id="pinetrees" src="assets/pinetrees/scene.gltf"></a-asset-item>
+
+        <a-asset-item id="galaxy" src="assets/galaxy/scene.gltf"></a-asset-item>
+        
+        <a-asset-item id="oaktree" src="assets/oaktree/scene.gltf"></a-asset-item>
+        <a-asset-item id="oaktrees" src="assets/oaktrees/scene.gltf"></a-asset-item>
+        <a-asset-item id="bluealienforest" src="assets/bluealienforest/scene.gltf"></a-asset-item> -->
+
+        <audio id="bigo" src="assets/Big-Oh-002.mp3" preload="auto"></audio>
+
+      </a-assets>
+
+      <a-entity position="0 0 2">
+        <a-camera></a-camera>
+      </a-entity>
+      <a-entity sound="src: #bigo; autoplay: true"></a-entity>
+
+      <a-entity light="type: directional; color: #FFFFFF; intensity: 0.7; castShadow: true"
+        position="0.5 1 1">
+      </a-entity>
+
+      <a-entity light="type: ambient; color: #555"
+        animation="property: light.color;
+                    type: color;
+                    to: #000077;
+                    dur: 20000;">
+      </a-entity>
+
+
+
+<!-- START ground -->
+      <a-sky 
+        material="color: #FFFFFF;
+        src: #stars;
+        repeat: 3 3;">
+      </a-sky>
+      <a-plane 
+        position="0 0 -4"  
+        rotation="-90 0 0" 
+        width="400" 
+        height="400" 
+        static-body
+        shadow="receive: true"
+        material="
+          src: #twigsandbranches;
+          repeat: 100 100;
+          normal-map: #twigsandbranches-normal;
+          normal-texture-repeat: 100 100;
+          
+        ">
+      </a-plane>
+<!-- END ground -->
+     
+
+<!-- Start of The Building -->
+      <a-cylinder material="color: #FFFFFF;
+                            src: #woodpanel;
+                            normal-map: #woodpanel-normal;
+                            repeat: 20 1;
+                            normal-texture-repeat: 20 1;
+                            "
+                  radius="8"
+                  height="5"
+                  position="0 2.5 0"
+                  open-ended="true"
+                  side="double"
+                  opacity="1"
+                  animation="property: opacity; to: 0.001; delay: 180000;  dur: 60000; easing:linear;"
+        >
+        <!--<a-entity sound="src: #w; autoplay: true; refDistance: 4"></a-entity>-->
+      </a-cylinder>
+
+      <a-sphere id="dome" position="0 1.6 0" 
+        radius="8.5" 
+        color="#ffffff" 
+        open-ended="true"
+        side="double"
+        theta-length="70"
+        opacity="0.9";
+        animation="property: opacity; to: 0.1; delay: 90000;  dur: 90000; easing:linear;"
+        material="color: #FFFFFF;
+        src: #bronzecopper;
+        repeat: 5 2;">
+      </a-sphere>
+
+      <a-cylinder material="color: #FFFFFF;
+        src: #marbleslab;
+        repeat: 10 10;"
+        radius="8"
+        height=".05"
+        position="0 0 0"
+        shadow="receive: true"
+        opacity="1"
+        animation="property: opacity; to: 0.001; delay: 180000;  dur: 60000; easing:linear;">
+      </a-cylinder>
+
+<!-- End of The Building -->
+
+
+<!-- START centerpiece-->
+      <a-box  id="centerpiece"
+        position="-1 1 -1" 
+        rotation="0 45 0"
+        shadow="receive: true"
+        material="color: #FFFFFF;
+        src: #futuristic;
+        normal-map: #futuristic-normal;
+        repeat: 2 2;
+        normal-texture-repeat: 2 2;">
+        <a-sphere position="0 1 0" 
+            radius=".5" 
+            roughness = "0.1"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 50000; easing:linear;""
+            material="color: #FFFFFF;
+            src: #stainlessSteel;
+            normal-map: #stainlessSteel-normal;
+            repeat: 2 2;
+            normal-texture-repeat: 2 2;">
+        </a-sphere>
+      </a-box>
+  <!-- END centerpiece-->
+
+ <!-- START Chairs -->     
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="2.5 .65 -5" 
+                rotation="0 325 0">
+      </a-entity>
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="3.75 .65 -4" 
+                rotation="0 325 0">
+      </a-entity>
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="5.0 .65 -3" 
+                rotation="0 325 0">
+      </a-entity>
+
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="-2.5 .65 -5" 
+                rotation="0 55 0">
+      </a-entity>
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="-3.75 .65 -4" 
+                rotation="0 55 0">
+      </a-entity>
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="-5.0 .65 -3" 
+                rotation="0 55  0">
+      </a-entity>
+
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="-2.5 .65 5" 
+                rotation="0 145 0">
+      </a-entity>
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="-3.75 .65 4" 
+                rotation="0 145 0">
+      </a-entity>
+      <a-entity gltf-model="#chair-3" 
+                scale="0.003 0.003 0.003" 
+                position="-5.0 .65 3" 
+                rotation="0 145 0">
+      </a-entity>
+ <!-- END Chairs -->    
+
+
+<!-- BEGIN TREES -->
+ 
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="12 0 0" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="10.7 0 5" rotation="0 28 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="8 0 10" rotation="0 87 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="0 0 15" rotation="0 239 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="8 0 7" rotation="0 28 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="13 0 13" rotation="0 87 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="2 0 18" rotation="0 239 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="8 0 -7" rotation="0 28 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="13 0 -13" rotation="0 87 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="2 0 -18" rotation="0 239 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="-13 0 0" rotation="0 150 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="-10 0 -5" rotation="0 77 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="-7 0 -10" rotation="0 300 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="3 0 -15" rotation="0 221 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="-12 0 -12" rotation="0 77 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="-7 0 -17" rotation="0 300 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="3 0 -12" rotation="0 221 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="12 0 -12" rotation="0 77 0"></a-entity>
+      <a-entity gltf-model="#pinetree" scale="0.05 0.05 0.05" position="7 0 -17" rotation="0 300 0"></a-entity>
+      <a-entity gltf-model="#pinetrees" scale="0.5 0.5 0.5" position="-8 0 8" rotation="0 -45 0"></a-entity>
+
+<!-- END TREES -->
+
+
+
+<!-- START Dancing Starts -->
+    <a-entity
+          opacity = "0.5"
+          
+              >
+      <a-entity position="0 8 0"
+                animation="
+                property: position;
+                dur: 10000;
+                from: 0 8 0;
+                to: 0 1 0;
+                loop: true; 
+                dur: 20000;
+                easing: easeInElastic;
+                dir: alternate;
+                "
+                >
+
+                <a-entity id="star-mover" position="0 0 0"
+                          animation="
+                          property: rotation;
+                          to: 0 360 0; 
+                          loop: true; 
+                          dur: 20000;
+                          easing: linear
+                          "
+                          >
+                        
+                </a-entity>
+      </a-entity>
+    </a-entity>
+<!-- END Dancing Starts -->
+
+<!-- START Mirror Ball Lights -->
+      <!-- <a-entity gltf-model="#starcluster" 
+                scale="0.1 0.1 0.1" 
+                position="0 9 0" 
+                rotation="0 0 0"
+                opacity = "0.03"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 200000; easing:linear; dir: reverse;"
+                >
+      </a-entity> -->
+<!-- START Mirror Ball Lights -->
+
+<!-- Dome spotlights -->
+      <a-entity light="type: spot;
+                       target: #sky-sphere; 
+                       color: #C40070;
+                       angle: 10; 
+                       penumbra: 0.1;
+                       "
+                position="0 8 1">
+      </a-entity>
+      <a-entity light="type: spot;
+                       target: #sky-sphere; 
+                       color: #C46670;
+                       angle: 5; 
+                       penumbra: 0.1;
+                       "
+                position="0 3 3">
+      </a-entity>
+      <a-entity light="type: spot;
+                       target: #sky-sphere; 
+                       color: #700070;
+                       angle: 2; 
+                       penumbra: 0.1;
+                       "
+                position="-3 3 -5">
+      </a-entity>
+      <a-entity light="type: spot;
+                       target: #sky-sphere-1; 
+                       color: #700070;
+                       angle: 2; 
+                       penumbra: 0.1;
+                       "
+                position="-3 3 -5">
+      </a-entity>
+      <a-entity light="type: spot;
+                       target: #sky-sphere-2; 
+                       color: #700070;
+                       angle: 2; 
+                       penumbra: 0.1;
+                       "
+                position="-3 3 -5">
+      </a-entity>
+      <a-entity light="type: spot;
+                       target: #sky-sphere-3; 
+                       color: #700070;
+                       angle: 2; 
+                       penumbra: 0.1;
+                       "
+                position="-3 3 -5">
+      </a-entity>
+
+
+
+       <a-sphere id="sky-sphere"  radius=".05" color="#FFFFFF"
+          animation="
+          property: position;
+          dur: 20000;
+          from: -100 10 0;
+          to: 50 50 0;
+          loop: true;
+          easing:linear;
+          dir: alternate;
+          " >
+       
+      </a-sphere>
+      <a-entity position="1 7 1"
+                animation="
+                property: rotation;
+                to: 0 360 0; 
+                loop: true; 
+                dur: 5000;
+                easing: linear
+                "
+                >
+        <a-entity position="1 1 4"
+                  animation="
+                  property: rotation;
+                  to: 360 0 0; 
+                  loop: true; 
+                  dur: 8000;
+                  
+                  "
+                  >
+            <a-sphere id="sky-sphere-2" color="#FF0000" radius=".05" position="2 0 0">
+            </a-sphere>
+            <a-sphere id="sky-sphere-3" color="#FFff00" radius=".05" position="6 2 0">
+            </a-sphere>
+            <a-sphere id="sky-sphere-4" color="#FF00ff" radius=".05" position="4 4 3">
+            </a-sphere>
+        </a-entity>
+      </a-entity>
+<!--END Dome spotlights -->
+
+<!-- 
+      <a-entity gltf-model="#galaxy" 
+                scale="0.1 0.1 0.1" 
+                position="0 15 0" 
+                rotation="0 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 100000; easing:linear; dir: reverse;"
+                >
+      </a-entity> -->
+
+
+
+
+
+   
     </a-scene>
+
+    <script>
+      var sceneEl = document.querySelector('a-scene')
+      console.log("sceneEl: " + sceneEl)
+      var mirrorBall = document.createElement('a-entity')
+      mirrorBall.setAttribute("gltf-model","#starcluster")
+      mirrorBall.setAttribute("position",{x: 0, y: 9, z: 0})
+      mirrorBall.setAttribute("scale",{x: 0.1, y: 0.1, z: 0.1})
+      mirrorBall.setAttribute("rotation",{x: 0, y: 0, z: 0})
+      mirrorBall.setAttribute("animation","property: rotation; to: 0 360 0; loop: true; dur: 200000; easing:linear; dir: reverse;")
+
+      setTimeout(function(){ sceneEl.appendChild(mirrorBall) }, 120000)
+
+
+      var starmover = document.querySelector('#star-mover')
+      var newStar = document.createElement('a-entity')
+      newStar.setAttribute("gltf-model","#star")
+      newStar.setAttribute("position",{x: 2, y: 0, z: 0})
+      newStar.setAttribute("scale",{x: 0.003, y: 0.003, z: 0.003})
+      newStar.setAttribute("rotation",{x: 0, y: 0, z: 0})
+      newStar.setAttribute("animation","property: rotation; to: 0 360 0; loop: true; dur: 2000; easing:linear;")
+
+      var newStar2 = document.createElement('a-entity')
+      newStar2.setAttribute("gltf-model","#star")
+      newStar2.setAttribute("position",{x: 1, y: -1, z: 0})
+      newStar2.setAttribute("scale",{x: 0.003, y: 0.003, z: 0.003})
+      newStar2.setAttribute("rotation",{x: 0, y: 0, z: 0})
+      newStar2.setAttribute("animation","property: rotation; to: 0 360 0; loop: true; dur: 2000; easing:linear;")
+
+      var newStar3 = document.createElement('a-entity')
+      newStar3.setAttribute("gltf-model","#star")
+      newStar3.setAttribute("position",{x: 3, y: -1, z: 0})
+      newStar3.setAttribute("scale",{x: 0.003, y: 0.003, z: 0.003})
+      newStar3.setAttribute("rotation",{x: 0, y: 0, z: 0})
+      newStar3.setAttribute("animation","property: rotation; to: 0 360 0; loop: true; dur: 2000; easing:linear;")
+
+      var newStar4 = document.createElement('a-entity')
+      newStar4.setAttribute("gltf-model","#star")
+      newStar4.setAttribute("position",{x: 4, y: -2, z: 0})
+      newStar4.setAttribute("scale",{x: 0.003, y: 0.003, z: 0.003})
+      newStar4.setAttribute("rotation",{x: 0, y: 0, z: 0})
+      newStar4.setAttribute("animation","property: rotation; to: 0 360 0; loop: true; dur: 2000; easing:linear;")
+
+      setTimeout(function(){ starmover.appendChild(newStar) }, 30000)
+      setTimeout(function(){ starmover.appendChild(newStar2) }, 40000)
+      setTimeout(function(){ starmover.appendChild(newStar3) }, 50000)
+      setTimeout(function(){ starmover.appendChild(newStar4) }, 60000)
+
+
+      
+
+     
+      
+    </script>
   </body>
 </html>
